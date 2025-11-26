@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FitPlan — Personal Diet & Workout</title>
+
+  <!-- PWA / iOS meta -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="FitPlan">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>FitPlan</h1>
+    <p class="subtitle">Enter your details and FitPlan will make a daily diet + workout that fits around your job / school.</p>
+
+    <form id="profileForm" class="card">
+      <div class="row">
+        <label>Age</label>
+        <input type="number" id="age" min="10" max="120" required value="25">
+      </div>
+
+      <div class="row">
+        <label>Gender</label>
+        <select id="gender">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other / Prefer not</option>
+        </select>
+      </div>
+
+      <div class="row two">
+        <div>
+          <label>Height (ft)</label>
+          <input type="number" id="heightFt" min="3" max="8" value="5" required>
+        </div>
+        <div>
+          <label>Height (in)</label>
+          <input type="number" id="heightIn" min="0" max="11" value="9" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <label>Weight (lbs)</label>
+        <input type="number" id="weightLbs" min="60" max="700" required value="160">
+      </div>
+
+      <div class="row">
+        <label>Activity level (daily)</label>
+        <select id="activityLevel">
+          <option value="1.2">Mostly sedentary</option>
+          <option value="1.375">Lightly active</option>
+          <option value="1.55">Moderately active</option>
+          <option value="1.725">Very active</option>
+        </select>
+      </div>
+
+      <fieldset class="schedule">
+        <legend>Job / School</legend>
+        <div class="row switch">
+          <label><input type="checkbox" id="hasJob"> I have a job</label>
+          <label><input type="checkbox" id="hasSchool"> I have school</label>
+        </div>
+
+        <div id="jobTimes" class="row timeRow hidden">
+          <label>Job start</label>
+          <input type="time" id="jobStart" value="09:00">
+          <label>Job end</label>
+          <input type="time" id="jobEnd" value="17:00">
+          <label><input type="checkbox" id="jobActive"> Active job (standing/moving)</label>
+        </div>
+
+        <div id="schoolTimes" class="row timeRow hidden">
+          <label>School start</label>
+          <input type="time" id="schoolStart" value="08:00">
+          <label>School end</label>
+          <input type="time" id="schoolEnd" value="14:00">
+          <label><input type="checkbox" id="schoolActive"> Active (PE / Labs)</label>
+        </div>
+      </fieldset>
+
+      <div class="row">
+        <button type="button" id="planBtn">Make my plan</button>
+        <button type="button" id="exportBtn">Export data (JSON)</button>
+        <button type="button" id="importBtn">Import JSON</button>
+        <input type="file" id="importFile" accept=".json" class="hidden">
+      </div>
+    </form>
+
+    <section id="results" class="card hidden">
+      <h2>Your daily plan</h2>
+      <div id="summary"></div>
+      <h3>Diet</h3>
+      <div id="diet"></div>
+      <h3>Workout (today)</h3>
+      <div id="workout"></div>
+      <div class="note">Saved locally — if you add to Home Screen it will behave like an app. (On iOS use Share → Add to Home Screen.)</div>
+    </section>
+
+    <footer>
+      <small>FitPlan • Local-only demo. Not medical advice. For serious plans consult a professional.</small>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
