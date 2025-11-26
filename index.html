@@ -1,16 +1,116 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="style.css" />
-<title>Progress Tracker</title>
-</head>
-<body>
-<main>
-<h1>Progress Tracker</h1>
-<canvas id="progressChart"></canvas>
+<!doctype html>
+<form id="profileForm" class="card">
+<div class="row">
+<label>Age</label>
+<input type="number" id="age" min="10" max="120" required value="25">
+</div>
+
+
+<div class="row">
+<label>Gender</label>
+<select id="gender">
+<option value="male">Male</option>
+<option value="female">Female</option>
+<option value="other">Other / Prefer not</option>
+</select>
+</div>
+
+
+<div class="row two">
+<div>
+<label>Height (ft)</label>
+<input type="number" id="heightFt" min="3" max="8" value="5" required>
+</div>
+<div>
+<label>Height (in)</label>
+<input type="number" id="heightIn" min="0" max="11" value="9" required>
+</div>
+</div>
+
+
+<div class="row">
+<label>Weight (lbs)</label>
+<input type="number" id="weightLbs" min="60" max="700" required value="160">
+</div>
+
+
+<div class="row">
+<label>Activity level (daily)</label>
+<select id="activityLevel">
+<option value="1.2">Mostly sedentary</option>
+<option value="1.375">Lightly active</option>
+<option value="1.55">Moderately active</option>
+<option value="1.725">Very active</option>
+</select>
+</div>
+
+
+<fieldset class="schedule">
+<legend>Job / School</legend>
+<div class="row switch">
+<label><input type="checkbox" id="hasJob"> I have a job</label>
+<label><input type="checkbox" id="hasSchool"> I have school</label>
+</div>
+
+
+<div id="jobTimes" class="row timeRow hidden">
+<label>Job start</label>
+<input type="time" id="jobStart" value="09:00">
+<label>Job end</label>
+<input type="time" id="jobEnd" value="17:00">
+<label><input type="checkbox" id="jobActive"> Active job (standing/moving)</label>
+</div>
+
+
+<div id="schoolTimes" class="row timeRow hidden">
+<label>School start</label>
+<input type="time" id="schoolStart" value="08:00">
+<label>School end</label>
+<input type="time" id="schoolEnd" value="14:00">
+<label><input type="checkbox" id="schoolActive"> Active (PE / Labs)</label>
+</div>
+</fieldset>
+
+
+<div class="row">
+<button type="button" id="planBtn">Make my plan</button>
+<button type="button" id="exportBtn">Export data (JSON)</button>
+<button type="button" id="importBtn">Import JSON</button>
+<input type="file" id="importFile" accept=".json" class="hidden">
+</div>
+</form>
+
+
+<section id="results" class="card hidden">
+<h2>Your daily plan</h2>
+<div id="summary"></div>
+<h3>Diet</h3>
+<div id="diet"></div>
+<h3>Workout (today)</h3>
+<div id="workout"></div>
+
+
+<h3>Progress</h3>
+<div class="row">
+<input type="number" id="progressWeight" placeholder="Weight today (lbs)">
+<button id="addProgressBtn">Add</button>
+</div>
+<table id="progressTable">
+<thead><tr><th>Date</th><th>Weight (lbs)</th></tr></thead>
+<tbody></tbody>
+</table>
+
+
+<div class="note">Saved locally — if you add to Home Screen it will behave like an app. (On iOS use Share → Add to Home Screen.)</div>
+</section>
+
+
+<footer>
+<small>FitPlan • Local-only demo. Not medical advice. For serious plans consult a professional.</small>
+</footer>
 </main>
+
+
 <script src="app.js"></script>
 </body>
 </html>
